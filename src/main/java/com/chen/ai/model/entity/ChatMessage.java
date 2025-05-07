@@ -15,7 +15,6 @@ import org.springframework.ai.chat.messages.UserMessage;
 import java.io.Serializable;
 import java.util.Date;
 
-import static org.springframework.ai.chat.messages.MessageType.*;
 
 /**
  * 聊天消息表
@@ -76,14 +75,9 @@ public class ChatMessage implements Serializable {
     public static ChatMessage fromMessage(String conversationId, Message message) {
         ChatMessage chatMessage = new ChatMessage();
         chatMessage.setConversationId(conversationId);
-        // 根据消息类型获取内容
-        if (message instanceof SystemMessage) {
-            chatMessage.setContent(((SystemMessage) message).getText());
-        } else if (message instanceof UserMessage) {
-            chatMessage.setContent(((UserMessage) message).getText());
-        } else if (message instanceof AssistantMessage) {
-            chatMessage.setContent(((AssistantMessage) message).getText());
-        }
+        // 获取内容
+        chatMessage.setContent(message.getText());
+
         chatMessage.setRole(message.getMessageType().getValue());
         Object promptTokens = message.getMetadata().get("promptTokens");
         Object completionTokens = message.getMetadata().get("completionTokens");
