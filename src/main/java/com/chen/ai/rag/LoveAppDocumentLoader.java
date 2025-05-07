@@ -1,4 +1,4 @@
-package com.chen.aiagent.rag;
+package com.chen.ai.rag;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.document.Document;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Component
+@Component
 @Slf4j
 class LoveAppDocumentLoader {
 

@@ -1,4 +1,4 @@
-package com.yupi.yuaiagent.advisor;
+package com.chen.ai.advisor;
 
 import org.springframework.ai.chat.client.advisor.api.*;
 import reactor.core.publisher.Flux;

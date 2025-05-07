@@ -1,4 +1,4 @@
-package com.yupi.yuaiagent.app;
+package com.chen.ai.app;
 
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Assertions;
@@ -36,4 +36,13 @@ class LoveAppTest {
         LoveApp.LoveReport loveReport = loveApp.doChatWithReport(message, chatId);
         Assertions.assertNotNull(loveReport);
     }
+
+    @Test
+    void doChatWithRag() {
+        String chatId = UUID.randomUUID().toString();
+        String message = "我已经结婚了，但是婚后关系不太亲密，怎么办？";
+        String answer =  loveApp.doChatWithRag(message, chatId);
+        Assertions.assertNotNull(answer);
+    }
+
 }

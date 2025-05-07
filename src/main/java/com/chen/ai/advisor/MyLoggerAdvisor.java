@@ -1,15 +1,9 @@
-package com.yupi.yuaiagent.advisor;
+package com.chen.ai.advisor;
 
 import lombok.extern.slf4j.Slf4j;
-import reactor.core.publisher.Flux;
-
-import org.springframework.ai.chat.client.advisor.api.AdvisedRequest;
-import org.springframework.ai.chat.client.advisor.api.AdvisedResponse;
-import org.springframework.ai.chat.client.advisor.api.CallAroundAdvisor;
-import org.springframework.ai.chat.client.advisor.api.CallAroundAdvisorChain;
-import org.springframework.ai.chat.client.advisor.api.StreamAroundAdvisor;
-import org.springframework.ai.chat.client.advisor.api.StreamAroundAdvisorChain;
+import org.springframework.ai.chat.client.advisor.api.*;
 import org.springframework.ai.chat.model.MessageAggregator;
+import reactor.core.publisher.Flux;
 
 /**
  * 自定义日志 Advisor

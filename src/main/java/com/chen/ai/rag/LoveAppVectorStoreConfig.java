@@ -1,4 +1,4 @@
-package com.chen.aiagent.rag;
+package com.chen.ai.rag;
 
 import jakarta.annotation.Resource;
 import org.springframework.ai.document.Document;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-//@Configuration
+@Configuration
 public class LoveAppVectorStoreConfig {
 
     @Resource

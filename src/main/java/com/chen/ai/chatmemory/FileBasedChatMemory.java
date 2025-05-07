@@ -1,4 +1,4 @@
-package com.yupi.yuaiagent.chatmemory;
+package com.chen.ai.chatmemory;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
