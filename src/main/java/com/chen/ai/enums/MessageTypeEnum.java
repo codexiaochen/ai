@@ -1,4 +1,4 @@
-package com.chen.ai.enyms;
+package com.chen.ai.enums;
 import lombok.Getter;
 /**
  * JDos注释：
