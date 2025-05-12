@@ -2,6 +2,8 @@ package com.chen.ai.app;
 
 import com.chen.ai.advisor.MyLoggerAdvisor;
 import com.chen.ai.chatmemory.MySQLChatMemory;
+import com.chen.ai.rag.LoveAppRagCustomAdvisorFactory;
+import com.chen.ai.rag.QueryRewriter;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
@@ -25,6 +27,9 @@ public class LoveApp {
 
     @Resource
     private VectorStore loveAppVectorStore;
+
+    @Resource
+    private QueryRewriter queryRewriter;
 
     private final ChatClient chatClient;
 
@@ -105,16 +110,22 @@ public class LoveApp {
      * @return
      */
     public String doChatWithRag(String message, String chatId) {
+        // 查询重写
+        String rewrittenMessage = queryRewriter.doQueryRewrite(message);
         ChatResponse chatResponse = chatClient
                 .prompt()
-                .user(message)
+                .user(rewrittenMessage)
                 .advisors(spec -> spec.param(CHAT_MEMORY_CONVERSATION_ID_KEY, chatId)
                         .param(CHAT_MEMORY_RETRIEVE_SIZE_KEY, 10))
                 // 开启日志，便于观察效果
                 .advisors(new MyLoggerAdvisor())
                 // 应用知识库问答
-                .advisors(new QuestionAnswerAdvisor(loveAppVectorStore))
+//                .advisors(new QuestionAnswerAdvisor(loveAppVectorStore))
+                .advisors(LoveAppRagCustomAdvisorFactory.createLoveAppRagCustomAdvisor(
+                        loveAppVectorStore, "已婚"
+                ))
                 .call()
+
                 .chatResponse();
         String content = chatResponse.getResult().getOutput().getText();
         log.info("content: {}", content);
