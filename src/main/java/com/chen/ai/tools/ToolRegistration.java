@@ -15,12 +15,14 @@ public class ToolRegistration {
         WebScrapingTool webScrapingTool = new WebScrapingTool();
         ResourceDownloadTool resourceDownloadTool = new ResourceDownloadTool();
         TerminalOperationTool terminalOperationTool = new TerminalOperationTool();
+        TerminateTool terminateTool = new TerminateTool();
         return ToolCallbacks.from(
             fileOperationTool,
 //            webSearchTool,
             webScrapingTool,
             resourceDownloadTool,
-            terminalOperationTool
+            terminalOperationTool,
+            terminateTool
         );
     }
 }
